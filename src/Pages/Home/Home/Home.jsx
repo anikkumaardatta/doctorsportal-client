@@ -1,16 +1,26 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
 import InfoCards from '../InfoCards/InfoCards';
+import Services from '../Services/Services';
+import ServiceBanner from '../ServiceBarner/ServiceBanner';
+import MakeAppointment from '../MakeAppointment/MakeAppointment';
+import Testimonial from '../Testimonial/Testimonial';
+import ContactForm from '../ContactForm/ContactForm';
 
 const Home = () => {
 
     
 
     return (
-        <div className='mx-5'>
+        <section className=''>
             <Banner/>
             <InfoCards/>
-        </div>
+            <Services/>
+            <ServiceBanner/>
+            <MakeAppointment/>
+            <Testimonial/>
+            <ContactForm/>
+        </section>
     );
 };
 
