@@ -16,3 +16,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: rgb(255, 255, 255);
+  background: #19D3AF;
+}
+
+::selection {
+  color: rgb(255, 255, 255);
+  background: #19D3AF;
+}

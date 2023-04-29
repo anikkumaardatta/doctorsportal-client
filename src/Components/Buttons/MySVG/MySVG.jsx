@@ -3,7 +3,7 @@ import scrollTop from "../../../assets/icons/scroll-up.gif"
 
 const MySVG = () => {
     return (
-        <img src={scrollTop} alt="" srcset="" />
+        <img src={scrollTop} alt="" srcSet="" />
     );
 };
 

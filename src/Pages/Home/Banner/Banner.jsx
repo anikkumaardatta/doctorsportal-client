@@ -5,7 +5,7 @@ import PrimaryBtn from "../../../Components/Buttons/PrimaryBtn";
 
 const Banner = () => {
   return (
-    <section className="max-w-[1200px] mx-auto">
+    <header className="max-w-[1200px] mx-auto">
       <div className="hero min-h-full sm:my-2 md:py-5 lg:py-20"
         style={{
           backgroundImage: `url(${bannerBg})`,
@@ -26,7 +26,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 };
 
