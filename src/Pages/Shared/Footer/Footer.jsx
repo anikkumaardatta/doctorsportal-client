@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 rounded-lg bg-secondary p-6 shadow-lg sm:flex-row sm:justify-between">
           <strong className="text-xl text-white sm:text-xl">
-            Make Your Next Career Move!
+          Your New Smile Starts Here!
           </strong>
 
           <a
@@ -211,7 +211,13 @@ const Footer = () => {
         <div className="mt-16">
           <div className="mt-16 sm:flex sm:items-center sm:justify-between">
             <p className="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-right mx-auto">
-              Copyright &copy; 2022. All rights reserved.
+              
+            {/* <!-- copyright --> */}
+                <div className="text-center">
+                    <div className="">Copyright © 2021-2023 <br/>
+                        Design by <a className="text-purple-600 font-semibold underline" href="https://www.programming-hero.com/">Programming Hero</a> <br />
+                        Developed by <a className="text-primary font-semibold underline" href="https://www.linkedin.com/in/anik-datta/">Anik K. Datta</a></div>
+                </div>
             </p>
           </div>
         </div>

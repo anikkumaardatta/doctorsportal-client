@@ -3,7 +3,7 @@ import React from "react";
 const Service = ({serviceData}) => {
     const {icon, title, describe} = serviceData;
   return (
-    <section className="card shadow-xl bg-white my-5 md:my-16">
+    <section className="card shadow-2xl border-4 border-teal-300 bg-green-50">
       <figure>
         <img
           src={icon}

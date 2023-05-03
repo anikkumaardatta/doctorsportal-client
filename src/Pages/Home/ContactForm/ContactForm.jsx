@@ -57,7 +57,7 @@ const ContactForm = () => {
               ></textarea>
             </div>
             <div className="text-center">
-              <button type="submit" className="btn bg-gradient-to-r from-secondary to-primary text-white border-0">Send Message</button>
+              <PrimaryBtn type="submit">Send Message</PrimaryBtn>
             </div>
           </div>
         </div>

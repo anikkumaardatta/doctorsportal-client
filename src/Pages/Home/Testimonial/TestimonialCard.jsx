@@ -18,13 +18,13 @@ const TestimonialCard = ({testiData}) => {
               </div>
             </div>
 
-            <p className="relative mt-4 text-gray-500">
+            <div className="relative mt-4 text-gray-500">
               <span className="text-xl">&ldquo;</span>
 
               {message.slice(0,300)}
 
               <span className="text-xl">&rdquo;</span>
-            </p>
+            </div>
           </blockquote>
         </div>
     );

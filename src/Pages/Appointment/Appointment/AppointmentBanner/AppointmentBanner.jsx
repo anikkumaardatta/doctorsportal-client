@@ -44,14 +44,14 @@ const AppointmentBanner = ({ selectedDate, setSelectedDate }) => {
                   today: 'my-today'
                 }}
               />
-              <p className="text-xl text-center pb-5">
+              <div className="text-xl text-center pb-5">
                 You have selected date:
                 <span className="font-semibold text-emerald-500 text-2xl">
                   {" "}
                   {format(selectedDate, "PP")}
                 </span>
                 .
-              </p>
+              </div>
             </div>
           </div>
         </div>

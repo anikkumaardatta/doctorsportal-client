@@ -34,7 +34,7 @@ const Services = () => {
     <section className="text-center mt-20 max-w-[1200px] mx-auto">
         <PrimaryText>Our Services</PrimaryText>
         <Headding2>Services We Provide</Headding2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-4 my-20 lg:my12">
         {servicesData.map((serviceData) => (
           <Service key={serviceData._id} serviceData={serviceData} />
         ))}
