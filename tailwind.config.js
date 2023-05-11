@@ -18,7 +18,7 @@ module.exports = {
 
           bright: "#ffffff",
 
-          "base-100": "#FbFbFb",
+          "base-100": "#FDFDFD",
 
           info: "#5F9DF7",
 

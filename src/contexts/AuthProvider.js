@@ -34,7 +34,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const signInWithGoogle = () => {
-    setLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -61,20 +60,15 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = currentUser.uid;
-        setUser(currentUser);
-        setLoading(false);
-        // ...
-      } else {
-      }
+      setUser(currentUser);
+      setLoading(false);
       return () => unsubscribe();
     });
   }, []);
+
   const authInformation = {
     user,
     createUser,

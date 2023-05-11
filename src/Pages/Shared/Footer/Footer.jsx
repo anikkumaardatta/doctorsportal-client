@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer
       aria-label="Site Footer"
-      className="bg-white"
+      className="bg-base-100"
       style={{
         backgroundImage: `url(${footerBg})`,
       }}

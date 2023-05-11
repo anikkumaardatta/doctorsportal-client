@@ -2,14 +2,19 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const [loginError, setLoginError] = useState(null);
+  const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [token] = useToken(loginUserEmail);
   const location = useLocation();
-  const navigate = useNavigate()
-
-  const from = location.state?.from?.pathname || '/';
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const {
     register,
@@ -24,7 +29,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        navigate(from, {replace: true});
+        setLoginUserEmail(data.email);
         // ...
       })
       .catch((error) => {
@@ -40,9 +45,9 @@ const Login = () => {
         <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
           <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
             <div className="">
-              <h5 className="div bg-error text-white rounded-t-xl px-8 text-center break-words">{
-              loginError
-              }</h5>
+              <h5 className="div bg-error text-white rounded-t-xl px-8 text-center break-words">
+                {loginError}
+              </h5>
             </div>
             <div className="rounded-xl bg-white shadow-xl">
               <div className="p-6 sm:p-12">

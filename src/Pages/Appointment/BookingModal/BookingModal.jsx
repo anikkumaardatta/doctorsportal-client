@@ -97,6 +97,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             />
             <input
               defaultValue={user?.email}
+              disabled
               name="email"
               required
               type="email"

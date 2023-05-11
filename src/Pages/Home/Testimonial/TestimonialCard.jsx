@@ -4,7 +4,7 @@ const TestimonialCard = ({testiData}) => {
     const {photo, fName, location, message} = testiData;
     return (
         <div className="swiper-slide">
-          <blockquote className="bg-gray-100 p-8">
+          <blockquote className="bg-white shadow-lg rounded-lg p-8">
             <div className="flex items-center gap-4">
               <img
                 alt="Dog"

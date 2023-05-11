@@ -1,53 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { FiLogOut, FiLogIn } from "react-icons/fi";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
+    
+    navigate(`/`);
     logOut()
-      .then(() => {})
+      .then(() => {
+        console.log("Logged out", user );
+      })
       .catch((error) => console.error(error));
   };
   const menuItems = (
     <>
-      <li className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer">
-        <Link to={"/"}>Home</Link>
-      </li>
-      <li className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer">
-        <Link to={"/about"}>About</Link>
-      </li>
-      <li className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer">
-        <Link to={"/appointment"}>Appointment</Link>
-      </li>
-      <li className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer">
-        <Link to={"/reviews"}>Reviews</Link>
-      </li>
-      <li className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer">
-        <Link to={"/contact"}>Contact Us</Link>
-      </li>
+      <NavLink
+        to={"/"}
+        className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to={"/about"}
+        className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+      >
+        About
+      </NavLink>
+      <NavLink
+        to={"/appointment"}
+        className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+      >
+        Appointment
+      </NavLink>
+      <NavLink
+        to={"/reviews"}
+        className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+      >
+        Reviews
+      </NavLink>
+      <NavLink
+        to={"/contact"}
+        className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+      >
+        Contact Us
+      </NavLink>
       {user?.uid && (
         <>
-          <li className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer">
-            <Link to={"/dashboard"}>Dashboard</Link>
-          </li>
-          <button onClick={handleLogOut} className="btn">
-            Sign out
-          </button>
+          <NavLink
+            to={"/dashboard/my_appointments"}
+            className="border-b-4 font-medium border-transparent my-2 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+          >
+            Dashboard
+          </NavLink>
         </>
       )}
     </>
   );
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-white py-0">
         <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <div className="">
+            <label
+              htmlFor="dashboard-drawer"
+              tabIndex={0}
+              className="btn btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -63,35 +88,42 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-            <ul
-              tabIndex={0}
-              className="menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {menuItems}
-            </ul>
           </div>
-          <a className="text-xl font-bold text-secondary ms-8">
+          <a className="text-lg lg:text-xl font-bold text-secondary m-0 lg:ms-8">
             Doctors
             <span className="bg-primary text-white ms-1 px-1">Portal</span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize">
+          <ul className="container flex items-center justify-center mx-auto text-gray-600 capitalize">
             {menuItems}
           </ul>
         </div>
         <div className="navbar-end text-gray-600 capitalize">
+          <div className="div">
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="lg:hidden">
+                <BsThreeDotsVertical className="btn btn-ghost text-4xl mx-2 border-2 rounded-full p-2" />
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-lg w-52"
+              >
+                {menuItems}
+              </ul>
+            </div>
+          </div>
           <div className="font-medium hover:text-accent my-0 mx-1.5 sm:mx-6 duration-150 ease-in-out px-1">
             {user?.uid ? (
               <div className="dropdown dropdown-bottom dropdown-end">
                 <label tabIndex={0} className="m-1">
                   <div className="avatar">
-                    <div className="w-12 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2 cursor-pointer">
+                    <div className="w-8 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2 cursor-pointer">
                       <img
                         src={
                           user?.photoURL
                             ? user?.photoURL
-                            : "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
+                            : "https://marketplace.canva.com/EAFEits4-uw/1/0/1600w/canva-boy-cartoon-gamer-animated-twitch-profile-photo-oEqs2yqaL8s.jpg"
                         }
                         alt={user?.uid}
                       />
@@ -101,13 +133,13 @@ const Navbar = () => {
                 {/* <!-- component --> */}
                 <div
                   tabIndex={0}
-                  class="dropdown-content bg-white shadow-xl rounded-lg pt-3 border max-w-xs min-w-max"
+                  className="dropdown-content bg-white shadow-xl rounded-lg pt-3 border max-w-xs min-w-max"
                 >
-                  <div class="photo-wrapper flex justify-center p-2">
+                  <div className="photo-wrapper flex justify-center p-2">
                     <div className="avatar online">
                       <div className="w-24 rounded-full">
                         <img
-                          class="w-20 h-20 rounded-full mx-auto border-2 border-secondary p-1"
+                          className="w-20 h-20 rounded-full mx-auto border-2 border-secondary p-1"
                           src={
                             user?.photoURL
                               ? user?.photoURL
@@ -117,47 +149,43 @@ const Navbar = () => {
                         />
                       </div>
                     </div>
-                    {/* <img
-                            class="w-20 h-20 rounded-full mx-auto border-2 border-secondary p-1"
-                            src=""
-                          /> */}
                   </div>
-                  <div class="p-2">
-                    <h3 class="text-center text-xl text-gray-900 font-medium leading-8">
+                  <div className="p-2">
+                    <h3 className="text-center text-xl text-gray-900 font-medium leading-8">
                       {user?.displayName ? user.displayName : user.email}
                     </h3>
-                    <div class="text-center text-gray-400 text-xs font-semibold">
+                    <div className="text-center text-gray-400 text-xs font-semibold">
                       <p>Web Developer</p>
                     </div>
-                    <table class="text-xs my-3">
+                    <table className="text-xs my-3">
                       <tbody>
                         <tr>
-                          <td class="px-2 py-2 text-gray-500 font-semibold">
+                          <td className="px-2 py-2 text-gray-500 font-semibold">
                             Address
                           </td>
-                          <td class="px-2 py-2">
+                          <td className="px-2 py-2">
                             Chatakpur-3, Dhangadhi Kailali
                           </td>
                         </tr>
                         <tr>
-                          <td class="px-2 py-2 text-gray-500 font-semibold">
+                          <td className="px-2 py-2 text-gray-500 font-semibold">
                             Phone
                           </td>
-                          <td class="px-2 py-2">+977 9955221114</td>
+                          <td className="px-2 py-2">+977 9955221114</td>
                         </tr>
                         <tr>
-                          <td class="px-2 py-2 text-gray-500 font-semibold">
+                          <td className="px-2 py-2 text-gray-500 font-semibold">
                             Email
                           </td>
-                          <td class="px-2 py-2 lowercase">{user.email}</td>
+                          <td className="px-2 py-2 lowercase">{user.email}</td>
                         </tr>
                       </tbody>
                     </table>
 
-                    <div class="text-center my-3">
+                    <div className="text-center my-3">
                       <button
                         onClick={handleLogOut}
-                        class="btn btn-error btn-block btn-sm rounded-sm gap-2 text-white font-medium"
+                        className="btn btn-error btn-block btn-sm rounded-sm gap-2 text-white font-medium"
                         href="#"
                       >
                         Log Out
@@ -168,13 +196,13 @@ const Navbar = () => {
                 </div>
               </div>
             ) : (
-              <Link
+              <NavLink
                 className="btn btn-outline gap-2 btn-sm rounded-sm"
                 to={"/login"}
               >
                 Login
                 <FiLogIn className="w-4 h-4" />
-              </Link>
+              </NavLink>
             )}
           </div>
         </div>

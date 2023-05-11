@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { toast } from "react-hot-toast";
+import useToken from "../../hooks/useToken";
 
 // console.log(process.env.REACT_APP_apiKey);
 
@@ -13,17 +14,22 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+
   const navigate = useNavigate();
   const [signUpError, setSignUpError] = useState(null);
+  const [createdUserEmail, setCreatedUserEmail] = useState('')
+  const [token] = useToken(createdUserEmail)
+  if(token){
+    navigate('/')
+    toast.success("User created successfully");
+  }
   const handleSignUp = (data) => {
     setSignUpError(null);
     createUser(data.email, data.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate(`/`);
-        console.log("Profile updated!", user);
-        toast.success("User created successfully");
 
         {
           const userInfo = {
@@ -33,7 +39,7 @@ const SignUp = () => {
             updateUser(userInfo)
               .then(() => {
                 // Profile updated!
-                console.log("Profile updated!");
+                saveUserData(data.name, data.email);
                 // ...
               })
               .catch((error) => {
@@ -43,6 +49,27 @@ const SignUp = () => {
                 // ...
               });
         }
+        const saveUserData = (name, email) => {
+          const allUserData = {
+            name,
+            email,
+          };
+          fetch("http://localhost:5000/all_users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(allUserData),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if(data.acknowledged){
+                setCreatedUserEmail(email)
+              }
+            });
+        };
+        
         // ...
       })
       .catch((error) => {
@@ -57,10 +84,10 @@ const SignUp = () => {
       <div className="relative py-8">
         <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
           <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
-          <div className="">
-              <h5 className="div bg-error text-white rounded-t-xl px-8 text-center break-words">{
-              signUpError
-              }</h5>
+            <div className="">
+              <h5 className="div bg-error text-white rounded-t-xl px-8 text-center break-words">
+                {signUpError}
+              </h5>
             </div>
             <div className="rounded-xl bg-white shadow-xl">
               <div className="p-6 sm:p-12">
