@@ -1,6 +1,6 @@
 import React from "react";
 import bannerIMG from "../../../assets/images/treatment.png";
-import Headding2 from "../../../Components/Texts/Headding2";
+import Headding from "../../../Components/Texts/Headding";
 import PrimaryBtn from "../../../Components/Buttons/PrimaryBtn";
 
 const ServiceBanner = () => {
@@ -10,11 +10,11 @@ const ServiceBanner = () => {
         <div className="hero-content flex-col lg:flex-row">
           <img src={bannerIMG} className="max-w-sm rounded-lg shadow-2xl" />
           <div className="lg:w-1/2 m-5">
-            <Headding2>
+            <Headding>
               Exceptional Dental Care,
               <br />
               on Your Terms
-            </Headding2>
+            </Headding>
             <p className="py-6">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The

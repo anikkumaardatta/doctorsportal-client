@@ -22,7 +22,7 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="flex flex-col p-4 w-80 bg-white">
+          <ul className="flex flex-col p-4 w-80">
             {/* <!-- Sidebar content here --> */}
             {/* User menu */}
             <>
@@ -61,6 +61,22 @@ const DashboardLayout = () => {
                     className="border-b-4 font-medium border-transparent p-1 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
                   >
                     All users
+                  </NavLink>
+                </li>
+                <li className="my-2">
+                  <NavLink
+                    to={"/dashboard/add_doctor"}
+                    className="border-b-4 font-medium border-transparent p-1 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+                  >
+                    Add a Doctor
+                  </NavLink>
+                </li>
+                <li className="my-2">
+                  <NavLink
+                    to={"/dashboard/manage_doctors"}
+                    className="border-b-4 font-medium border-transparent p-1 hover:text-gray-900 hover:border-secondary mx-1.5 sm:mx-6 duration-150 ease-in-out px-1 cursor-pointer"
+                  >
+                    Manage Doctors
                   </NavLink>
                 </li>
               </>

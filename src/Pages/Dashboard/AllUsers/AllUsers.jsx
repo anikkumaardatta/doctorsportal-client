@@ -1,13 +1,16 @@
-import React from "react";
-import Headding2 from "../../../Components/Texts/Headding2";
+import React, { useState } from "react";
+import Headding from "../../../Components/Texts/Headding";
 import { useQuery } from "react-query";
 import { MdErrorOutline } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { BsTrash } from "react-icons/bs";
 import { MdAdminPanelSettings } from "react-icons/md";
+import DeleteUserModal from "./DeleteUserModal/DeleteUserModal";
+import Loading from "../../../Components/Loading/Loading";
 
 const AllUsers = () => {
-  const { data: allUsers = [], refetch } = useQuery({
+  const [selectedUser, setSelectedUser] = useState(null);
+  const { data: allUsers = [], isLoading, refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/all_users");
@@ -19,7 +22,7 @@ const AllUsers = () => {
     fetch(`http://localhost:5000/all_users/admin/${_id}`, {
       method: "PUT",
       headers: {
-        authorization: `bearer ${localStorage.getItem('accessToken')}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
@@ -30,11 +33,13 @@ const AllUsers = () => {
         }
       });
   };
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <div className="p-5">
-      <div className="flex justify-between mx-5 flex-col md:flex-row">
-        <Headding2>My Appointments</Headding2>
-        <button className="btn btn-outline my-2">Button</button>
+      <div className="mx-5">
+        <Headding>All Users</Headding>
       </div>
       <div className="overflow-x-auto mt-5">
         {allUsers.length === 0 ? (
@@ -76,15 +81,27 @@ const AllUsers = () => {
                     )}
                   </td>
                   <td>
-                    <button className="btn btn-outline btn-error btn-xs rounded-sm hover:text-white">
+                    {/* The button to open modal */}
+                    <label
+                      htmlFor="delete-modal"
+                      onClick={() => setSelectedUser(singleUser)}
+                      className="btn btn-outline btn-error btn-xs rounded-sm hover:text-white"
+                    >
                       <BsTrash className="me-1" /> Delete
-                    </button>
+                    </label>
                   </td>
                 </tr>
               ))}
             </tbody>
+            
           </table>
         )}
+        {
+          selectedUser && <DeleteUserModal
+          selectedUser={selectedUser}
+          refetch={refetch}
+        />
+        }
       </div>
     </div>
   );

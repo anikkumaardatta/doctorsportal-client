@@ -5,7 +5,6 @@ import BookingModal from "../../../BookingModal/BookingModal";
 import { useQuery } from "react-query";
 
 const AppointmentServices = ({ selectedDate }) => {
-  // const [appointmentServices, setAppointmentServices] = useState([]);
   const [treatment, setTreatment] = useState(null);
   const date = format(selectedDate, 'PP')
   const { data: appointmentServices = [] , refetch} = useQuery({

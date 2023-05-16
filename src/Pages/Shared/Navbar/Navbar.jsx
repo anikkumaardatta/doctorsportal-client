@@ -107,7 +107,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-lg w-52"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
               >
                 {menuItems}
               </ul>

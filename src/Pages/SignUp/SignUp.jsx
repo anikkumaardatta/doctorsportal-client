@@ -22,7 +22,6 @@ const SignUp = () => {
   const [token] = useToken(createdUserEmail)
   if(token){
     navigate('/')
-    toast.success("User created successfully");
   }
   const handleSignUp = (data) => {
     setSignUpError(null);
@@ -63,9 +62,9 @@ const SignUp = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               if(data.acknowledged){
                 setCreatedUserEmail(email)
+                toast.success("User created successfully");
               }
             });
         };

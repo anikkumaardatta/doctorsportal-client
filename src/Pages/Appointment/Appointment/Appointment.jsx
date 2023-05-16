@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Headding2 from "../../../Components/Texts/Headding2";
+import Headding from "../../../Components/Texts/Headding";
 import AppointmentBanner from "./AppointmentBanner/AppointmentBanner";
 import AppointmentServices from "./AppointmentBanner/AppointmentServices/AppointmentServices";
 

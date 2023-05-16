@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useToken from "../../hooks/useToken";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
@@ -30,6 +31,7 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         setLoginUserEmail(data.email);
+        toast.success("User Login successfully");
         // ...
       })
       .catch((error) => {

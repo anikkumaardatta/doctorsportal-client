@@ -1,7 +1,7 @@
 import React from "react";
 import contactBannerBg from "../../../assets/images/appointment.png";
 import PrimaryText from "../../../Components/Texts/PrimaryText";
-import Headding2 from "../../../Components/Texts/Headding2";
+import Headding from "../../../Components/Texts/Headding";
 import PrimaryBtn from "../../../Components/Buttons/PrimaryBtn";
 
 const ContactForm = () => {

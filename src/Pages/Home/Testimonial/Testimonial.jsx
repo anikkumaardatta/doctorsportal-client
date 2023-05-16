@@ -1,6 +1,6 @@
 import React from "react";
 import PrimaryText from "../../../Components/Texts/PrimaryText";
-import Headding2 from "../../../Components/Texts/Headding2";
+import Headding from "../../../Components/Texts/Headding";
 import quote from "../../../assets/icons/quote.svg";
 import TestimonialCard from "./TestimonialCard";
 
@@ -37,7 +37,7 @@ const Testimonial = () => {
       <div className="flex justify-between m-5">
         <div>
           <PrimaryText>Testimonial</PrimaryText>
-          <Headding2>What Our Patients Says</Headding2>
+          <Headding>What Our Patients Says</Headding>
         </div>
         <div>
           <img className="w-24 md:w-32 lg:w-48" src={quote} alt="" />
